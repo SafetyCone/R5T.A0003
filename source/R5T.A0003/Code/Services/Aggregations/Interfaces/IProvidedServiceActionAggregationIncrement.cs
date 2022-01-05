@@ -3,8 +3,8 @@
 using Microsoft.Extensions.DependencyInjection;
 
 using R5T.Quadia.D002;
+using R5T.Suebia;
 
-using R5T.D0075;
 using R5T.D0093;
 using R5T.D0095.D001;
 using R5T.D0096.D003;
@@ -22,7 +22,6 @@ namespace R5T.A0003
 {
     public interface IProvidedServiceActionAggregationIncrement
     {
-        IServiceAction<ICommandLineOperator> CommandLineOperatorAction { get; set; }
         IServiceAction<IConfigurationAuditSerializer> ConfigurationAuditSerializerAction { get; set; }
         IServiceAction<IConfigurationSerializationFileNameProvider> ConfigurationSerializationFileNameProviderAction { get; set; }
         IServiceAction<IConfigurationSerializationFilePathProvider> ConfigurationSerializationFilePathProviderAction { get; set; }
@@ -40,6 +39,8 @@ namespace R5T.A0003
         IServiceAction<IOrganizationSharedDataDirectoryPathProvider> OrganizationSharedDataDirectoryPathProviderAction { get; set; }
         IServiceAction<IProcessNameProvider> ProcessNameProviderAction { get; set; }
         IServiceAction<IProcessStartTimeProvider> ProcessStartTimeProviderAction { get; set; }
+        IServiceAction<ISecretsDirectoryFilePathProvider> SecretsDirectoryFilePathProviderAction { get; set; }
+        IServiceAction<ISecretsDirectoryPathProvider> SecretsDirectoryPathProviderAction { get; set; }
         IServiceAction<IServiceCollection> ServiceCollectionAction { get; set; }
         IServiceAction<IServiceCollectionAuditSerializer> ServiceCollectionAuditSerializerAction { get; set; }
         IServiceAction<IServiceCollectionSerializationFileNameProvider> ServiceCollectionSerializationFileNameProviderAction { get; set; }

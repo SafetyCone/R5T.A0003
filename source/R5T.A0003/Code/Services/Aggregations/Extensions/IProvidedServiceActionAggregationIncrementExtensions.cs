@@ -11,7 +11,6 @@ namespace System
             IProvidedServiceActionAggregationIncrement other)
             where T : IProvidedServiceActionAggregationIncrement
         {
-            aggregation.CommandLineOperatorAction = other.CommandLineOperatorAction;
             aggregation.ConfigurationAuditSerializerAction = other.ConfigurationAuditSerializerAction;
             aggregation.ConfigurationSerializationFileNameProviderAction = other.ConfigurationSerializationFileNameProviderAction;
             aggregation.ConfigurationSerializationFilePathProviderAction = other.ConfigurationSerializationFilePathProviderAction;

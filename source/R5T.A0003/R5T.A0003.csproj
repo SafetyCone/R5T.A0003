@@ -6,7 +6,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\R5T.D0048\source\R5T.D0048.A001\R5T.D0048.A001.csproj" />
+    <ProjectReference Include="..\..\..\R5T.D0065\source\R5T.D0065.Standard\R5T.D0065.Standard.csproj" />
     <ProjectReference Include="..\..\..\R5T.D0075\source\R5T.D0075.Default\R5T.D0075.Default.csproj" />
+    <ProjectReference Include="..\..\..\R5T.D0076\source\R5T.D0076.A001\R5T.D0076.A001.csproj" />
     <ProjectReference Include="..\..\..\R5T.D0081\source\R5T.D0081.Base\R5T.D0081.Base.csproj" />
     <ProjectReference Include="..\..\..\R5T.D0093\source\R5T.D0093.I002\R5T.D0093.I002.csproj" />
     <ProjectReference Include="..\..\..\R5T.D0095\source\R5T.D0095.D001.I001\R5T.D0095.D001.I001.csproj" />
@@ -29,6 +31,8 @@
     <ProjectReference Include="..\..\..\R5T.Ostrogothia\source\R5T.Ostrogothia.Base\R5T.Ostrogothia.Base.csproj" />
     <ProjectReference Include="..\..\..\R5T.Quadia\source\R5T.Quadia.A001\R5T.Quadia.A001.csproj" />
     <ProjectReference Include="..\..\..\R5T.Quadia\source\R5T.Quadia.D002.I001\R5T.Quadia.D002.I001.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Suebia\source\R5T.Suebia.Default\R5T.Suebia.Default.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Suebia\source\R5T.Suebia.Quadia\R5T.Suebia.Quadia.csproj" />
     <ProjectReference Include="..\..\..\R5T.T0021\source\R5T.T0021\R5T.T0021.csproj" />
     <ProjectReference Include="..\..\..\R5T.T0062\source\R5T.T0062.X002\R5T.T0062.X002.csproj" />
   </ItemGroup>

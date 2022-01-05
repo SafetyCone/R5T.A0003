@@ -4,9 +4,12 @@ using R5T.Lombardy;
 using R5T.Magyar;
 using R5T.Quadia.A001;
 using R5T.Quadia.D002.I001;
+using R5T.Suebia.Default;
+using R5T.Suebia.Quadia;
 
 using R5T.D0048.A001;
-using R5T.D0075.Default;
+using R5T.D0065.Standard;
+using R5T.D0076.A001;
 using R5T.D0093.I002;
 using R5T.D0095.D001.I001;
 using R5T.D0095.D001.I002;
@@ -34,7 +37,7 @@ namespace R5T.A0003
             IRequiredServiceActionAggregation requiredServiceActionAggregation)
         {
             // Level 0.
-            var commandLineOperatorAction = _.AddCommandLineOperatorAction();
+            var commandLineOperatorActions = _.AddCommandLineOperatorServiceActions();
             var configurationSerializationFileNameProviderAction = _.AddConstructorBasedConfigurationSerializationFileNameProviderAction(
                 Instances.FileName.ConfigurationText());
             var currentProcessStartTimeProviderAction = _.AddCurrentProcessStartTimeProviderAction();
@@ -53,6 +56,8 @@ namespace R5T.A0003
             var stringlyTypedPathOperatorActions = _.AddStringlyTypedPathOperatorActions();
 
             // Level 1.
+            var executableDirectoryPathProviderActions = _.AddExecutableDirectoryPathProviderActions(
+                stringlyTypedPathOperatorActions.StringlyTypedPathOperatorAction);
             var loggerSynchronicityProviderAction = _.AddLoggerSynchronicityProviderAction(
                 requiredServiceActionAggregation.ExecutionSynchronicityProviderAction);
             var organizationDataDirectoryPathProviderActions = _.AddOrganizationDataDirectoryPathProviderActions(
@@ -71,6 +76,9 @@ namespace R5T.A0003
                 processStartTimeProviderAction,
                 requiredServiceActionAggregation.RootOutputDirectoryPathProviderAction,
                 stringlyTypedPathOperatorActions.StringlyTypedPathOperatorAction);
+            var secretsDirectoryPathProviderAction = _.AddSecretsDirectoryPathProviderAction(
+                organizationDataDirectoryPathProviderActions.OrganizationDataDirectoryPathProviderAction,
+                stringlyTypedPathOperatorActions.StringlyTypedPathOperatorAction);
 
             // Level 3.
             var configurationSerializationFilePathProviderAction = _.AddConfigurationSerializationFilePathProviderAction(
@@ -87,6 +95,9 @@ namespace R5T.A0003
                 outputFilePathProviderActions.OutputFilePathProviderAction);
             var organizationSharedDataDirectoryFilePathProviderAction = _.AddOrganizationSharedDataDirectoryFilePathProviderAction(
                 organizationSharedDataDirectoryPathProviderAction,
+                stringlyTypedPathOperatorActions.StringlyTypedPathOperatorAction);
+            var secretsDirectoryFilePathProviderAction = _.AddSecretsDirectoryFilePathProviderAction(
+                secretsDirectoryPathProviderAction,
                 stringlyTypedPathOperatorActions.StringlyTypedPathOperatorAction);
             var serviceCollectionSerializationFilePathProviderAction = _.AddServiceCollectionSerializationFilePathProviderAction(
                 outputFilePathProviderActions.OutputFilePathProviderAction,
@@ -116,7 +127,6 @@ namespace R5T.A0003
             var output = new ProvidedServiceActionAggregation()
                 .As<ProvidedServiceActionAggregation, IProvidedServiceActionAggregationIncrement>(aggregation =>
                 {
-                    aggregation.CommandLineOperatorAction = commandLineOperatorAction;
                     aggregation.ConfigurationAuditSerializerAction = configurationAuditSerializerAction;
                     aggregation.ConfigurationSerializationFileNameProviderAction = configurationSerializationFileNameProviderAction;
                     aggregation.ConfigurationSerializationFilePathProviderAction = configurationSerializationFilePathProviderAction;
@@ -134,11 +144,15 @@ namespace R5T.A0003
                     aggregation.OrganizationSharedDataDirectoryPathProviderAction = organizationSharedDataDirectoryPathProviderAction;
                     aggregation.ProcessNameProviderAction = processNameProviderAction;
                     aggregation.ProcessStartTimeProviderAction = processStartTimeProviderAction;
+                    aggregation.SecretsDirectoryFilePathProviderAction = secretsDirectoryFilePathProviderAction;
+                    aggregation.SecretsDirectoryPathProviderAction = secretsDirectoryPathProviderAction;
                     aggregation.ServiceCollectionAction = serviceCollectionAction;
                     aggregation.ServiceCollectionAuditSerializerAction = serviceCollectionAuditSerializerAction;
                     aggregation.ServiceCollectionSerializationFileNameProviderAction = serviceCollectionSerializationFileNameProviderAction;
                     aggregation.ServiceCollectionSerializationFilePathProviderAction = serviceCollectionSerializationFilePathProviderAction;
                 })
+                .FillFrom(commandLineOperatorActions)
+                .FillFrom(executableDirectoryPathProviderActions)
                 .FillFrom(humanOutputActions)
                 .FillFrom(machineOutputActions)
                 .FillFrom(organizationDataDirectoryPathProviderActions)

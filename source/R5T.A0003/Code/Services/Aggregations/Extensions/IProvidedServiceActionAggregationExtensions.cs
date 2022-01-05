@@ -4,6 +4,7 @@ using R5T.Lombardy;
 
 using R5T.A0003;
 
+using ICommandLineOperatorActionAggregation = R5T.D0076.A001.IServiceActionAggregation01;
 using IHumanOutputActionAggregation = R5T.D0096.A001.IServiceActionAggregation;
 using IMachineOutputActionAggregation = R5T.D0099.A001.IServiceActionAggregation;
 using IOrganizationDataDirectoryPathProviderActionAggregation = R5T.Quadia.A001.IServiceActionAggregation01;
@@ -20,6 +21,7 @@ namespace System
         {
             (aggregation as IProvidedServiceActionAggregationIncrement).FillFrom(other);
 
+            (aggregation as ICommandLineOperatorActionAggregation).FillFrom(other);
             (aggregation as IHumanOutputActionAggregation).FillFrom(other);
             (aggregation as IMachineOutputActionAggregation).FillFrom(other);
             (aggregation as IOrganizationDataDirectoryPathProviderActionAggregation).FillFrom(other);
