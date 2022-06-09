@@ -1,7 +1,7 @@
 ﻿using System;
 
 using R5T.Lombardy;
-using R5T.Magyar;
+using R5T.Magyar.Extensions;
 using R5T.Quadia.A001;
 using R5T.Quadia.D002.I001;
 using R5T.Suebia.Default;
@@ -125,7 +125,7 @@ namespace R5T.A0003
                 machineOutputFilePathProviderAction);
 
             var output = new ProvidedServiceActionAggregation()
-                .As<ProvidedServiceActionAggregation, IProvidedServiceActionAggregationIncrement>(aggregation =>
+                .ModifyAs<ProvidedServiceActionAggregation, IProvidedServiceActionAggregationIncrement>(aggregation =>
                 {
                     aggregation.ConfigurationAuditSerializerAction = configurationAuditSerializerAction;
                     aggregation.ConfigurationSerializationFileNameProviderAction = configurationSerializationFileNameProviderAction;
